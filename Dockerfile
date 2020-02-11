@@ -1,4 +1,4 @@
-FROM cooptilleuls/php-mssql-alpine
+FROM cooptilleuls/php-mssql-alpine:7.2-fpm
 FROM php:7.2.27-fpm-alpine3.11
 
 LABEL maintainer="Ric Harvey <ric@ngd.io>"
@@ -200,9 +200,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     sqlite-dev \
     libjpeg-turbo-dev \
     postgresql-dev && \
-    docker-php-ext-configure gd \
-      --with-freetype \
-      --with-jpeg && \
+    docker-php-ext-configure gd && \
     #curl iconv session
     #docker-php-ext-install pdo_mysql pdo_sqlite mysqli mcrypt gd exif intl xsl json soap dom zip opcache && \
     docker-php-ext-install iconv pdo_mysql pdo_sqlite pgsql pdo_pgsql mysqli gd exif intl xsl json soap dom zip opcache && \
