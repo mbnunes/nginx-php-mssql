@@ -17,4 +17,4 @@ fi
 
 cd ${WEBROOT}
 git pull || exit 1
-chown -Rf nginx:nginx ${WEBROOT}
+chown -Rf www-data:www-data ${WEBROOT}
