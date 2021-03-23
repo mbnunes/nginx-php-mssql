@@ -17,4 +17,4 @@ fi
 
 cd ${WEBROOT}
 git pull || exit 1
-chown -Rf www-data:www-data ${WEBROOT}
+chown -Rf xfs:xfs ${WEBROOT}
