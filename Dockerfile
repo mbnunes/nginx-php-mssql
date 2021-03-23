@@ -1,5 +1,5 @@
 FROM cooptilleuls/php-mssql-alpine:7.2-fpm
-FROM php:7.2.27-fpm-alpine3.11
+FROM php:7.2.34-fpm-alpine3.12
 
 LABEL maintainer="Ric Harvey <ric@ngd.io>"
 
@@ -214,11 +214,12 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     mkdir -p /var/log/supervisor && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer && \
-    rm composer-setup.php && \
-    pip3 install -U pip && \
-    pip3 install --upgrade pip && \
-    pip install --upgrade pip && \
-    pip3 install -U certbot && \
+    rm composer-setup.php
+
+RUN apk add rust cargo py3-pip && \
+    pip install -U pip && \  
+    pip install --upgrade pip && \   
+    pip install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python3-dev make autoconf
 #    apk del .sys-deps
